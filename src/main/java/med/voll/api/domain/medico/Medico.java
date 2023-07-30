@@ -1,10 +1,11 @@
-package med.voll.api.model;
+package med.voll.api.domain.medico;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import med.voll.api.domain.endereco.Endereco;
 import med.voll.api.domain.medico.DadosAtualizarMedico;
 import med.voll.api.domain.medico.DadosCadastrosMedico;
 import med.voll.api.domain.medico.Especialidade;
