@@ -26,11 +26,18 @@ public class AuthController {
 
     @PostMapping
     public ResponseEntity login(@RequestBody @Valid DadosAuth dadosAuth){
-        var authenticationToken = new UsernamePasswordAuthenticationToken(dadosAuth.login(), dadosAuth.password());
-        var authentication =  authenticationManager.authenticate(authenticationToken);
+        try{
+            var authenticationToken = new UsernamePasswordAuthenticationToken(dadosAuth.login(), dadosAuth.password());
+            var authentication =  authenticationManager.authenticate(authenticationToken);
 
-        var tokenJWT = tokenService.gerarToken((Usuario) authentication.getPrincipal());
-        return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
+            var tokenJWT = tokenService.gerarToken((Usuario) authentication.getPrincipal());
+            return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
+
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
     }
 
 
